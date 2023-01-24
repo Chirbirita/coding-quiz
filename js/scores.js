@@ -1,9 +1,15 @@
-function printHighScores(){
-
+function printHighScores() {
+    // TODO
 }
 
-function clearHighScores(){
-
+function clearHighScores() {
+    // TODO
 }
 
-// document.getElementById("clear").onclick = clearHighScores;
+let clearButton = document.getElementById("clear");
+clearButton.addEventListener("click", clearHighScores);
+
+
+// document.getElementById("clear").onclick = clearHighScores;    WHAT IS THIS???
+
+printHighScores();

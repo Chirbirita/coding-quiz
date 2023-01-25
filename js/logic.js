@@ -41,7 +41,7 @@ function questionClick() {
     currentQuestionsIndex++;
 
     if (currentQuestionsIndex === questions.length) {
-        endQuiz
+        endQuiz()
     } else {
         getQuestion();
     }
@@ -78,7 +78,6 @@ function endQuiz() {
 
     let endScreenElement = document.getElementById("end-screen");
     // endScreenElement.removeAttribute("class");
-
     /**
      * ? get all the classes from the class attribute and remove class 'hide'
      * ? then add class 'start' - which aligns text center
@@ -133,7 +132,7 @@ function saveHighScore() {
 }
 
 function checkForEnter() {
-    if (Event.key === "Enter"){
+    if (Event.key === "Enter") {
         saveHighScore();
     }
 }

@@ -29,15 +29,25 @@ function questionClick() {
         feedbackElement.textContent = "Sorry, wrong answer"
     } else {
         soundRight.play();
-        feedbackElement.textContent = "That's right!"
+        feedbackElement.textContent = "That's right!";
     }
 
     feedbackElement.setAttribute("class", "feedback");
 
-    setTimeout(function(){
+    setTimeout(function () {
         feedbackElement.setAttribute("class", "feedback hide")
-    })
+    }, 1000);
+
+    currentQuestionsIndex++;
+
+    if (currentQuestionsIndex === questions.length) {
+        endQuiz
+    } else {
+        getQuestion();
+    }
 }
+
+
 
 function getQuestion() {
     let currentQuestion = questions[currentQuestionsIndex];
@@ -48,13 +58,13 @@ function getQuestion() {
 
     choicesElement.innerHTML = "";
 
-    currentQuestion.choices.forEach(function(choice, index) {
+    currentQuestion.choices.forEach(function (choice, index) {
         let choiceButton = document.createElement("button");
 
         choiceButton.setAttribute("class", "choice");
         choiceButton.setAttribute("value", choice);
 
-        choiceButton.textContent = `${index = 1}. ${choice}`;
+        choiceButton.textContent = `${index + 1}. ${choice}`;
 
         choiceButton.addEventListener("click", questionClick);
 
@@ -62,19 +72,6 @@ function getQuestion() {
     })
 }
 
-
-function startQuiz() {
-    let startScreenElement = document.getElementById("start-screen");
-    startScreenElement.setAttribute("class", "hide");
-
-    questionsElement.removeAttribute("class");
-
-    timerID = setInterval(clockTick, 1000);
-
-    timerElement.textContent = time;
-
-    getQuestion();
-}
 
 function endQuiz() {
     clearInterval(timerID);
@@ -104,12 +101,41 @@ function clockTick() {
     }
 }
 
+function startQuiz() {
+    let startScreenElement = document.getElementById("start-screen");
+    startScreenElement.setAttribute("class", "hide");
+
+    questionsElement.removeAttribute("class");
+
+    timerID = setInterval(clockTick, 1000);
+
+    timerElement.textContent = time;
+
+    getQuestion();
+}
+
 function saveHighScore() {
+    let initials = initialsElement.value.trim();
+
+    if (initials !== "") {
+        let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+        let newScore = {
+            score: time,
+            initials: initials
+        }
+
+        highScores.push(newScore);
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+
+        window.location.href = "highscores.html";
+    }
 
 }
 
 function checkForEnter() {
-
+    if (Event.key === "Enter"){
+        saveHighScore();
+    }
 }
 
 

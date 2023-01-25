@@ -42,7 +42,7 @@ let questions = [
     },
     {
         "title": "Which tag is used to insert a JavaScript into an HTML page???",
-        "choices": ["<js>", "<script>", "<javascript>t", "<script=java> "],
+        "choices": ["<js>", "<script>", "<javascript>", "<script=java> "],
         "answer": "<script>"
     },
     {
@@ -69,14 +69,7 @@ let questions = [
         "title": "Which is the correct “if” statement to execute certain code if “i” is NOT equal to 7?",
         "choices": ["if i<>7", "if(i !=7)", "i =! 7 then", "if (i not= 7)"],
         "answer": "if(i !=7)"
-    },
-    {
-        "title": "Question 1",
-        "choices": ["a", "b", "c", "d"],
-        "answer": "c"
-    },
-
-
+    }
 ]
 
 
